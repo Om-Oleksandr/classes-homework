@@ -23,4 +23,3 @@ function UserProto() {
 
 User.prototype = new UserProto();
 
-const user = new User('Naruto', 'Uzumaki', 18)
