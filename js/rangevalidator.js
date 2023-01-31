@@ -15,6 +15,10 @@ class RangeValidator {
     if (typeof value !== "number") {
       throw new TypeError("From must be number");
     }
+    if (value > this.to) {
+      this._to = value;
+      return;
+    }
     this._from = value;
   }
   get to() {
@@ -23,6 +27,10 @@ class RangeValidator {
   set to(value) {
     if (typeof value !== "number") {
       throw new TypeError("To must be number");
+    }
+    if (value < this.to) {
+      this._from = value;
+      return;
     }
     this._to = value;
   }
@@ -36,7 +44,7 @@ class RangeValidator {
   }
 }
 try {
-  const number = new RangeValidator(30, 15);
+  const number = new RangeValidator(100, 20);
   console.log(number);
   console.log(number.getRange());
   console.log(number.isValid(30));
